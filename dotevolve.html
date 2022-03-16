@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DotEvolve</title>
+    <link rel="stylesheet" href="dotevove.css">
+</head>
+<body>
+    <div class="container">
+
+        <div class="box" style="border: solid 1px black;">
+
+            <form action="#"  name="loginForm" method="post">
+
+                <h1>SIGNUP</h1>
+               
+                <input type="text" name="Name :" i
+                d="name" placeholder="Enter name">
+             
+                <input type="email" name="email" id="email" placeholder="Email">
+             
+                <input type="password" name="password" id="pwd" placeholder="password"  >
+                <span is="msg"></span>
+                
+               
+                 <input type="password" name="password" id="pwds"   placeholder="confirm password" >
+
+                <button type="submit" onclick="saveData() " id="save-btn">SIGNUP</button>
+        
+             </form>
+         </div>    
+    </div>
+
+    <script>
+
+        function saveData() 
+        {
+
+        let name , email , pwd ,userData;
+
+        name=document.getElementById("name").value ;
+        email=document.getElementById("email").value ;
+        pwd=document.getElementById("pwd").value ;
+
+        let user_records = new Array() ;
+        user_records =JSON.parse(localStorage.getItem("users"))? JSON.parse(localStorage.getItem("users")) :[] 
+
+        var a =document.getElementById("pwd").value;
+        var b =document.getElementById("pwds").value;
+
+            if (a!= b )
+            {
+                alert("password mismatch")
+            }
+
+            if(a.length < 3)
+            {
+                alert("Must contain at least 3 char")
+            }
+
+            if(user_records.some((v)=> {return v.email == email }))
+            {
+                alert("duplicate data entered....!")
+
+            }
+            else
+            {
+                user_records.push({
+                "name" : name,
+                "email" :email,
+                "pwd" : pwd
+            })
+
+            document.write("Welcome to dashboard");
+            localStorage.setItem("userData" , JSON.stringify(user_records));
+            }
+
+        }
+    </script>
+
+</body>
+</html>
